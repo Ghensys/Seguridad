@@ -68,7 +68,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 	    <div class="tab-content">
           <div class="my-5">
 
-          	<h4 class="my-1" ">Cedula: <?php echo $cedula;?></h4>
+          	<h4 class="my-1" ">Datos del Visitante: <?php echo $cedula;?></h4>
 
 			<form action="../registrar_visita.php" method="post" accept-charset="utf-8">
 				<input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
@@ -78,7 +78,8 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 				<input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly>
 				<input type="text" name="urlImg" value="<?php echo $row['urlImg'];?>" readonly>
 				<input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
-				<input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly>
+				<input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
+				<button type="submit" class="btn btn-primary my-4">Registrar Visita</button>
 			</form>
 		  </div>
 
