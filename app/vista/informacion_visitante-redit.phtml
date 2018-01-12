@@ -59,19 +59,19 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
-          	<a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
-			<a data-toggle="tab" href="#eliminar" class="list-group-item">Herramientas</a>
+            <a href="#" onclick="javascript:history.go(-2)" class="list-group-item active">Volver</a>
+      <a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
+      <a data-toggle="tab" href="#eliminar" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-	    <div class="tab-content">
+      <div class="tab-content">
           <div class="my-5">
 
-          	<h4 class="my-1" ">Datos del Visitante: <?php echo $cedula;?></h4>
+            <h4 class="my-1" ">Datos del Visitante: <?php echo $cedula;?></h4>
 
 
             <?php
@@ -118,7 +118,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
             <?php
             }
             ?>
-      		</div>
+          </div>
 
 
 
@@ -153,5 +153,5 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 }
 else
 {
-	header("Location:../../");
+  header("Location:../../");
 }

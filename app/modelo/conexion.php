@@ -19,7 +19,7 @@ class Conexion{
 		$this->db = "SistemaSeguridad5.4";
 	}
 	//metodo para conectar
-	public function conectar()
+	public function Conectar()
 	{
 		$this->con = pg_connect("host = $this->host port = $this->puerto user=$this->usuario password= $this->password dbname = $this->db");
 		//validacion

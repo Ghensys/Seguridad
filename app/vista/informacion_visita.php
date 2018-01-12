@@ -71,7 +71,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 	    <div class="tab-content">
           <div class="my-5">
 
-          	<h4 class="my-1" ">Datos del Visitante: <?php echo $cedula;?></h4>
+          	<h4 class="my-1" ">C.I. Del Visitante: <?php echo $cedula;?></h4>
 
 
             <?php
@@ -81,7 +81,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
             if ($raw) 
             {
             ?>
-              <form action="../vista/informacion_visita.php" method="post" accept-charset="utf-8">
+              <form action="informacion_visita.php" method="post" accept-charset="utf-8">
 
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
                 <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
@@ -101,7 +101,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
             else 
             {
             ?>
-              <form action="../vista/informacion_visita.php" method="post" accept-charset="utf-8">
+              <form action="informacion_visita.php" method="post" accept-charset="utf-8">
 
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
                 <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>

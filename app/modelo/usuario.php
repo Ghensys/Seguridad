@@ -25,7 +25,7 @@ class Usuario
 	public function RegistrarUsuario($nombre,$apellido,$email,$password,$id_perfil)
 	{
 		$con = new Conexion();
-		$con->conectar();
+		$con->Conectar();
 
 		$sql = "INSERT INTO public.users(nombre, apellido, email, password, id_perfil, created_at, updated_at) VALUES ('$nombre','$apellido','$email','$password','$id_perfil', NOW(), NOW());";
 
@@ -44,7 +44,7 @@ class Usuario
 	public function IniciarSesion($email,$password)
 	{
 		$con = new Conexion();
-		$con->conectar();
+		$con->Conectar();
 
 		$sql = "SELECT nombre, apellido, id_perfil FROM users WHERE email = '$email' AND password = '$password'; ";
 
