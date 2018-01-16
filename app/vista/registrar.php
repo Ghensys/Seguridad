@@ -65,23 +65,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-	    <div class="tab-content">
-          <div  class="my-5">
+    	    <div class="tab-content">
+            <div  class="my-5">
 
-            <div  class="form-control">
-              <h3>Validar Visitante</h3>
-              <p>
+              <div  class="form-control">
+                <h3>Validar Visitante</h3>
+                <p>
                   <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
-                  	<input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
-                  	<button type="submit" class="btn btn-primary">Avanzar</button>
+                   	<input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
+                   	<button type="submit" class="btn btn-primary">Avanzar</button>
                   </form>
-              </p>
-              
-            </div>
-       	  </div>
+                </p>
+              </div>
+         	  </div>
+          </div>
         </div>
         <!-- /.col-lg-9 -->
-       </div>
 
       </div>
       <!-- /.row -->
