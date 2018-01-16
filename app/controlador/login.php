@@ -23,6 +23,7 @@ if ($login)
 
 	//print_r($row);
 	session_start();
+	$_SESSION['id'] = $row['id'];
 	$_SESSION['email']= $email;
 	$_SESSION['nombre'] = $row['nombre'];
 	$_SESSION['apellido'] = $row['apellido'];

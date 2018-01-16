@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
 {
 
   $explode = explode("-", $row['fecha_nacimiento']);
@@ -23,6 +23,17 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
+
+    <script language="JavaScript">
+      function Salida()
+      {
+          if (confirm('¿Desea marcar la salida del Visitante?'))
+          {
+             document.salida.submit()
+          }
+      }
+    </script> 
+
 
   </head>
 
@@ -59,7 +70,7 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
-            <a href="#" onclick="javascript:history.go(-2)" class="list-group-item active">Volver</a>
+            <a href="../vista/registrar.php" class="list-group-item active">Volver</a>
       <a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
       <a data-toggle="tab" href="#eliminar" class="list-group-item">Herramientas</a>
           </div>
@@ -76,24 +87,40 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 
             <?php
 
-            $raw = pg_fetch_array($estatus);
-
-            if ($raw) 
+            if ($est[0]) 
             {
             ?>
-              <form action="../vista/informacion_visita.php" method="post" accept-charset="utf-8">
+            <div class="form-control">
+
+
+              <div class="form-group">
+                
+              <form name="salida" action="../controlador/salida.php" method="post" accept-charset="utf-8">
 
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
+                
+                <label for="nombre">Nombre: </label>
                 <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
-                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly>
-                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly>
+                
+                <label for="apellido">Apellido: </label>
+                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly><br/>
+                
+                <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
+                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly><br/>
+
+                <label for="zona_residencia">Zona de Residencia</label>
                 <input type="text" name="zona_residencia" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly>
+                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly><br/>
                 <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
                 <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
-                <button type="submit" class="btn btn-primary my-4">Marcar Salida</button>
+                <input type=button onclick="Salida()" value="Marcar Salida" class="btn btn-primary">            
             
               </form>
+
+              </div>
+              
+
+            </div>
 
 
             <?php
@@ -101,19 +128,32 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
             else 
             {
             ?>
-              <form action="../vista/informacion_visita.php" method="post" accept-charset="utf-8">
+
+            <div class="form-control">
+              
+              <form action="../vista/registrar_visita.php" method="post" accept-charset="utf-8">
 
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
+                
+                <label for="nombre">Nombre: </label>
                 <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
-                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly>
-                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly>
+                
+                <label for="apellido">Apellido: </label>
+                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly><br/>
+                
+                <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
+                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly><br/>
+
+                <label for="zona_residencia">Zona de Residencia</label>
                 <input type="text" name="zona_residencia" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly>
+                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly><br/>
                 <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
                 <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
                 <button type="submit" class="btn btn-primary my-4">Registrar Visita</button>
             
               </form>
+
+            </div>
 
             <?php
             }

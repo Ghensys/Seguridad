@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
 {
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,8 @@ if(isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION
 
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
+
+    
 
   </head>
 

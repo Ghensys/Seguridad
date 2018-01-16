@@ -16,6 +16,8 @@ if (pg_num_rows($visitante)>0)
 	$obj_visita = new Visitante();
 	$estatus = $obj_visita->EstadoVisita($cedula);
 
+	$est = pg_fetch_row($estatus);
+
 	
 
 	$row = pg_fetch_array($visitante);

@@ -2,8 +2,56 @@
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
 {
+  $cedula = $_POST['cedula'];
 
-$cedula = $_POST['cedula'];?>
+  require_once '../modelo/conexion.php';
+
+
+  function Gerencia()
+  {
+    $con = new Conexion();
+    $con->Conectar();
+
+    $sql = "SELECT id, descripcion_gerencia FROM gerencias;";
+
+    $query = pg_query($sql);
+
+    echo "<select name='gerencia' class='form-control' required>";
+    echo "<option value='' disabled selected></option>";
+    while ($gerencia = pg_fetch_row($query))
+    {
+      echo "<option value='".$gerencia[0]."'>".$gerencia[1]."</option>";
+    }
+    echo "</select><br/>";
+  }
+
+  function TipoVisita()
+  {
+    $con = new Conexion();
+    $con->Conectar();
+
+    $sql = "SELECT id, descripcion_tipo_visita FROM tipo_visitas;";
+
+    $query = pg_query($sql);
+
+    echo "<select name='tipo_visita' class='form-control' required>";
+    echo "<option value='' disabled selected></option>";
+    while ($tipo_visita = pg_fetch_row($query))
+    {
+      echo "<option value='".$tipo_visita[0]."'>".$tipo_visita[1]."</option>";
+    }
+    echo "</select><br/>";
+  }
+
+
+
+  //include '../controlador/datos_lista.php';
+
+  /*
+  $explode = explode("-", $row['fecha_nacimiento']);
+  $fecha_nacimiento = $explode[2]."/".$explode[1]."/".$explode[0];
+  */
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +105,7 @@ $cedula = $_POST['cedula'];?>
 
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
-          	<a href="../controlador/visitante.php?cedula=<?php echo $cedula;?>" class="list-group-item active">Volver</a>
+          	<a href="../controlador/visitante.php?cedula=<?php echo $cedula;?>&token=1" class="list-group-item active">Volver</a>
 			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
 			<a data-toggle="tab" href="#eliminar" class="list-group-item">Herramientas</a>
           </div>
@@ -67,55 +115,38 @@ $cedula = $_POST['cedula'];?>
         <div class="col-lg-9">
 
 	    <div class="tab-content">
+
           <div class="my-5">
 
-          	<h4 class="my-1" ">C.I. Del Visitante: <?php echo $cedula;?></h4>
+          	<h4 class="my-1" ">Registrar Visita: <?php echo "C.I: ".$cedula;?></h4>
 
-
-            <?php
-
-            $raw = pg_fetch_array($estatus);
-
-            if ($raw) 
-            {
-            ?>
-              <form action="informacion_visita.php" method="post" accept-charset="utf-8">
+            <div class="form-group">
+              <form action="../controlador/registrar_visita.php" method="post" accept-charset="utf-8">
 
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-                <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
-                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly>
-                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly>
-                <input type="text" name="zona_residencia" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
-                <button type="submit" class="btn btn-primary my-4">Marcar Salida</button>
+                <label for="gerencia">Gerencia a la que se Dirige:</label> 
+                <?php
+                  Gerencia();
+                ?>
+                <label for="tipo_visita">Tipo de Visita</label>
+                <?php
+                  TipoVisita();
+                ?>
+                <label for="responsable">Responsable:</label> 
+                Responsable: <input type="text" class="form-control" name="responsable" placeholder="Responsable" required><br/>
+                <input type="hidden" name="usuario" value="<?php echo $_SESSION['id'];?>">
+                <label for="observacion">Observación</label>
+                <textarea class="form-control" rows="5" name="observacion"></textarea><br/>
+                <label for="n_pase">Número de Pase</label>
+                <input type="number" class="form-control" name="n_pase" placeholder="N° Pase"><br/>
+                
+                <button type="submit" class="btn btn-primary my-4">Registrar Entrada</button>
             
               </form>
 
+              
+            </div>
 
-            <?php
-            }
-            else 
-            {
-            ?>
-              <form action="informacion_visita.php" method="post" accept-charset="utf-8">
-
-                <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-                <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
-                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly>
-                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly>
-                <input type="text" name="zona_residencia" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
-                <button type="submit" class="btn btn-primary my-4">Registrar Visita</button>
-            
-              </form>
-
-            <?php
-            }
-            ?>
       		</div>
 
 

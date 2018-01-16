@@ -73,13 +73,13 @@ class Visitante
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "SELECT 1 estatus FROM public.historico_visitantes WHERE cedula = '$cedula' AND estatus = 1 ORDER BY id LIMIT 1;";
+		$sql = "SELECT estatus FROM public.historico_visitantes WHERE cedula = '$cedula' ORDER BY id DESC LIMIT 1;";
 
 		$query = pg_query($sql);
 
 		if (pg_num_rows($query)>0)
 		{
-			return true;
+			return $query;
 		}
 		else
 		{
