@@ -21,6 +21,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
     
 
   </head>
@@ -56,10 +62,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
         <div class="col-lg-3">
 
-          <h2 class="my-4">Menú Principal</h2>
+          <h2 class="my-4">Menú</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
-            <a href="consulta.php" class="list-group-item active">Consultar Registro</a>
+            <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
+            <a href="registrar.php" class="list-group-item">Registrar</a>
             <a href="#" class="list-group-item">Herramientas</a>
           </div>
 
@@ -71,18 +77,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
        	  <div id="busqueda" class="my-5">
             <div class="form-group">
-
-              <br/>
-              <br/>
-              <table>
-                <tbody>
-                  <tr>
-                    <td><a href="consulta_visitante.php" title="Consultar Visitante" class="btn btn-outline-info">Consultar Visitante</a></td>
-                    <td><a href="consulta_general.php" title="Consulta General" class="btn btn-outline-info">Consulta General</a></td>
-                  </tr>
-                </tbody>
-              </table>
-              
+              <form action="" method="get" accept-charset="utf-8">
+                <label for="cedula">Cedula: </label>
+                <input type="numeric" name="cedula" placeholder="Cedula"><br/>
+                <label for="fecha_inicio">Fecha de Inicio: </label>
+                <input type="text" id="datepicker" name="fecha_inicio" placeholder="Fecha de Inicio" required><br/>
+                <label for="fecha_fin">Fecha Fin: </label>
+                <input type="text" id="datepicker2" name="fecha_fin" placeholder="Fecha Fin" required><br/>
+                <button type="submit" class="btn btn-primary">Consultar</button>
+              </form>
             </div>
        	  </div>
 
@@ -105,8 +108,43 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script-->
+
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+    </script>
+
+    <script>
+       $.datepicker.regional['es'] = {
+       closeText: 'Cerrar',
+       prevText: '< Ant',
+       nextText: 'Sig >',
+       currentText: 'Hoy',
+       monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+       monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+       dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+       dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+       dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+       weekHeader: 'Sm',
+       dateFormat: 'dd/mm/yy',
+       firstDay: 1,
+       isRTL: false,
+       showMonthAfterYear: false,
+       yearSuffix: ''
+       };
+       $.datepicker.setDefaults($.datepicker.regional['es']);
+      $(function () {
+      $("#datepicker").datepicker();
+      });
+      $(function () {
+      $("#datepicker2").datepicker();
+      });
+
+    </script>
+
 
   </body>
 
