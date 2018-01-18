@@ -66,4 +66,13 @@ class HistoricoVisitante
 			return false;
 		}
 	}
+
+	public function ConsultaVisitante($cedula,$fecha_inicio,$fecha_fin)
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql = "SELECT id, cedula, gerencias.descripcion_gerencia, tipo_visitas.descripcion_tipo_visita, responsable, users.nombre, users.apellido, observacion, n_pase, estatus, created_at, updated_at FROM public.historico_visitantes, gerencias, tipo_visitas, users, estatus WHERE historico_visitantes.cedula = '$cedula' AND historico_visitantes;
+";
+	}
 }
