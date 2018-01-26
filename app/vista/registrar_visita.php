@@ -106,8 +106,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
           	<a href="../controlador/visitante.php?cedula=<?php echo $cedula;?>&token=1" class="list-group-item active">Volver</a>
-			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
-			<a data-toggle="tab" href="#eliminar" class="list-group-item">Herramientas</a>
+      			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
+      			<a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
