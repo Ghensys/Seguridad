@@ -81,9 +81,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                 <label for="cedula">Cedula: </label>
                 <input type="number" name="cedula" placeholder="Cedula" required><br/>
                 <label for="fecha_inicio">Fecha de Inicio: </label>
-                <input type="text" id="datepicker" name="fecha_inicio" placeholder="Fecha de Inicio"><br/>
+                <input type="text" id="datepicker" name="fecha_inicio" placeholder="Fecha de Inicio" required><br/>
                 <label for="fecha_fin">Fecha Fin: </label>
-                <input type="text" id="datepicker2" name="fecha_fin" placeholder="Fecha Fin"><br/>
+                <input type="text" id="datepicker2" name="fecha_fin" placeholder="Fecha Fin" required><br/>
                 <button type="submit" class="btn btn-primary">Consultar</button>
               </form>
             </div>

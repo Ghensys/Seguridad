@@ -60,33 +60,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <div class="list-group">
             <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
             <a href="consulta.php" class="list-group-item">Consultar Registro</a>
-            <a href="#eliminar" class="list-group-item">Herramientas</a>
+            <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
         <!-- /.col-lg-3 -->
-        <div class="col-lg-9">
-
-      <div class="tab-content">
-
-          <div id="busqueda" class="tab-pane fade my-5">
-            <h3>consulta</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-
-          <div id="eliminar" class="tab-pane fade my-5">
-                <h3>eliminar</h3>
-                <p>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-          </div>
-
-
-        </div>
-        <!-- /.col-lg-9 -->
-       </div>
 
       </div>
       <!-- /.row -->

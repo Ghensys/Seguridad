@@ -58,7 +58,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <div class="list-group">
             <a href="registrar.php" class="list-group-item active">Registrar Visitante</a>
             <a href="consulta.php" class="list-group-item">Consultar Registro</a>
-            <a href="#eliminar" class="list-group-item">Herramientas</a>
+            <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
