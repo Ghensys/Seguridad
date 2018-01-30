@@ -59,4 +59,29 @@ class Usuario
 			return false;
 		}
 	}
+
+	public function ListaPerfil()
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql = "SELECT users.id,
+				users.nombre,
+				users.apellido, 
+				users.email, 
+				perfils.descripcion_perfil 
+				FROM users, perfils
+				WHERE users.id_perfil = perfils.id;";
+
+		$query = pg_query($sql);
+
+		if ($query)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
