@@ -197,7 +197,7 @@ class HistoricoVisitante
 						tipo_visitas,
 						historico_visitantes
 						WHERE
-						historico_visitantes.id_gerencias = '$gerencia'
+						historico_visitantes.id_gerencia = '$gerencia'
 						AND
 						datos_visitantes.cedula = historico_visitantes.cedula
 						AND
