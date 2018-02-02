@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
+  require_once '../modelo/select.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $cedula;?> - Registrar Visitante</title>
+    <title>Registrar Perfil</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -88,11 +89,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
         <div class="col-lg-3">
 
-          <h2 class="my-4">Menú</h2>
+          <h2 class="my-4">Registrar Perfil</h2>
           <div class="list-group">
           	<a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-      			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
-      			<a href="#eliminar" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
@@ -103,17 +102,67 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
             <div class="my-5">
 
-              <h4 class="my-1" ">Registrar Visitante: <?php echo $cedula;?></h4>
+              <h4 class="my-1" ">Registrar perfil</h4>
 
-          		<form action="../controlador/registrar_visitante.php" method="post" accept-charset="utf-8">
+          		<form action="../controlador/registrar_usuario.php" method="post" accept-charset="utf-8">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label>Nombre</label>
+                      </td>
+                      <td>
+                        <input type="text" name="nombre" placeholder="Nombre" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Apellido</label>
+                      </td>
+                      <td>
+                        <input type="text" name="apellido" placeholder="Apellido" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Correo Electrónico</label>
+                      </td>
+                      <td>
+                        <input type="email" name="email" placeholder="Correo Electrónico" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Contraseña</label>
+                      </td>
+                      <td>
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Tipo de Perfil</label>
+                      </td>
+                      <td>
+                        <?php 
+                        $obj_perfil = new Select();
+                        $obj_perfil->TipoPerfil();?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-          			<input type="text" name="nombre" placeholder="Nombre" required>
-          			<input type="text" name="apellido" placeholder="Apellido" required>
-          			<input type="text" id="datepicker" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
-          			<input type="text" name="zona_residencia" placeholder="Zona de Residencia" required>
-          			<input type="text" name="n_certificado" placeholder="N° Certificado">
-                <button type="submit" class="btn btn-primary my-4">Registrar Visitante</button>
+                
+          			
+                <label></label><button type="submit" class="btn btn-primary my-4">Registrar Perfil</button>
 
           		</form>
 

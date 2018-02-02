@@ -26,7 +26,7 @@ class Select
 
 		$query = pg_query($sql);
 
-		echo "<select name='gerencia' required>;";
+		echo "<select name='gerencia' class='form-control' required>;";
 		echo "<option value='0'>General</option>";
 
 		while ($row = pg_fetch_row($query))
@@ -46,8 +46,28 @@ class Select
 
 		$query = pg_query($sql);
 
-		echo "<select name='tipo_visita' required>;";
+		echo "<select name='tipo_visita' class='form-control' required>;";
 		echo "<option value='0'>General</option>";
+
+		while ($row = pg_fetch_row($query))
+		{
+			echo "<option value=".$row[0].">".$row[1]."</option>";
+		}
+
+		echo "</select>";
+	}
+
+	public function TipoPerfil()
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql = "SELECT * FROM perfils ORDER BY descripcion_perfil ASC;";
+
+		$query = pg_query($sql);
+
+		echo "<select name='id_perfil' class='form-control' required>;";
+		echo "<option value='' selected>Seleccionar</option>";
 
 		while ($row = pg_fetch_row($query))
 		{

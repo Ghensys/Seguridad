@@ -42,7 +42,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -58,11 +58,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú de Herramientas</h2>
           <div class="list-group">
-            <a href="perfil.php" class="list-group-item">Administrar Perfiles</a>
-            <a href="gerencia.php" class="list-group-item">Administrar Gerencias</a>
-            <a href="tipo_visita.php" class="list-group-item">Administrar </a>
+            <a href="../controlador/perfil.php" class="list-group-item">Administrar Perfiles</a>
+            <a href="../controlador/gerencia.php" class="list-group-item">Administrar Gerencias</a>
+            <a href="../controlador/tipo_visita.php" class="list-group-item">Administrar Tipo de Visitas</a>
             <a href="reporte.php" class="list-group-item">Reportes</a>
-            <a href="#" onclick="javascript:history.go(-1)" class="list-group-item">Volver</a>
+            <a href="index.php" class="list-group-item">Volver</a>
           </div>
 
         </div>

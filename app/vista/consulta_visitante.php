@@ -36,7 +36,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Sistema de Seguridad - Conapdis</a>
+        <img src="https://pbs.twimg.com/profile_images/825851268656726018/-a2tx--h_400x400.jpg" alt="">
+        <a class="navbar-brand" href="#"><!img src="../../images/icono.jpg" alt=""> Sistema de Seguridad - Conapdis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,7 +49,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -65,8 +66,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
             <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-            <a href="registrar.php" class="list-group-item">Registrar</a>
-            <a href="#" class="list-group-item">Herramientas</a>
+            <a href="registrar.php" class="list-group-item">Validar Visitante</a>
+            <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
@@ -78,12 +79,43 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
        	  <div id="busqueda" class="my-5">
             <div class="form-group">
               <form action="../controlador/consulta_visitante.php" method="post" accept-charset="utf-8">
-                <label for="cedula">Cedula: </label>
-                <input type="number" name="cedula" placeholder="Cedula" required><br/>
-                <label for="fecha_inicio">Fecha de Inicio: </label>
-                <input type="text" id="datepicker" name="fecha_inicio" placeholder="Fecha de Inicio" required><br/>
-                <label for="fecha_fin">Fecha Fin: </label>
-                <input type="text" id="datepicker2" name="fecha_fin" placeholder="Fecha Fin" required><br/>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td align="right">
+                        <label for="cedula">Cedula: </label>
+                      </td>
+                      <td>
+                        <input type="number" name="cedula" placeholder="Cedula" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Rango de Fechas</label>
+                      </td>
+                    </tr>
+                      <td align="right">
+                        <label for="fecha_inicio">Del: </label>
+                      </td>
+                      <td>
+                        <input type="text" id="datepicker" name="fecha_inicio" placeholder="DD/MM/AA" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right">
+                        <label for="fecha_fin">Al: </label>
+                      </td>
+                      <td>
+                        <input type="text" id="datepicker2" name="fecha_fin" placeholder="DD/MM/AA" required>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                
+                <br/>
+                
+                <br/>
                 <button type="submit" class="btn btn-primary">Consultar</button>
               </form>
             </div>
@@ -98,14 +130,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <!--script src="../../vendor/jquery/jquery.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
 ?>
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -56,7 +56,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item active">Registrar Visitante</a>
+            <a href="registrar.php" class="list-group-item active">Validar Visitante</a>
             <a href="consulta.php" class="list-group-item">Consultar Registro</a>
             <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
@@ -69,7 +69,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
             <div  class="my-5">
 
               <div  class="form-control">
-                <h3>Validar Visitante</h3>
+                <h3>Validar Cedula</h3>
                 <p>
                   <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
                    	<input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
@@ -87,14 +87,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>

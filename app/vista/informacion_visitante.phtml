@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
 
   $explode = explode("-", $row['fecha_nacimiento']);
@@ -53,7 +53,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -95,24 +95,41 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               <div class="form-group">
                 
               <form name="salida" action="../controlador/salida.php" method="post" accept-charset="utf-8">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label for="nombre">Nombre: </label>
+                        <?php echo $row['nombre'];?>
+                      </td>
+                      <td>
+                        <label for="apellido">Apellido: </label>
+                        <?php echo $row['apellido'];?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
+                        <?php echo $fecha_nacimiento;?>
+                      </td>
+                      <td>
+                        <label for="zona_residencia">Zona de Residencia: </label>
+                        <?php echo $row['zona_residencia'];?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="n_certificado_discapacidad">N° Certificado de Discapacidad: </label>
+                        <?php echo $row['n_certificado'];?>
+                      </td>
+                      <td>
+                        <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
+                        <input type=button onclick="Salida()" value="Marcar Salida" class="btn btn-primary">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-                
-                <label for="nombre">Nombre: </label>
-                <input type="text" value="<?php echo $row['nombre'];?>" readonly>
-                
-                <label for="apellido">Apellido: </label>
-                <input type="text" value="<?php echo $row['apellido'];?>" readonly><br/>
-                
-                <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
-                <input type="text" value="<?php echo $fecha_nacimiento;?>" readonly><br/>
-
-                <label for="zona_residencia">Zona de Residencia</label>
-                <input type="text" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" value="<?php echo $row['n_certificado'];?>" readonly><br/>
-                <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
-                <input type=button onclick="Salida()" value="Marcar Salida" class="btn btn-primary">            
               </form>
 
               </div>
@@ -130,25 +147,40 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
             <div class="form-control">
               
               <form action="../vista/registrar_visita.php" method="post" accept-charset="utf-8">
-
-                <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-                
-                <label for="nombre">Nombre: </label>
-                <input type="text" name="nombre" value="<?php echo $row['nombre'];?>" readonly>
-                
-                <label for="apellido">Apellido: </label>
-                <input type="text" name="apellido" value="<?php echo $row['apellido'];?>" readonly><br/>
-                
-                <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
-                <input type="text" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly><br/>
-
-                <label for="zona_residencia">Zona de Residencia</label>
-                <input type="text" name="zona_residencia" value="<?php echo $row['zona_residencia'];?>" readonly>
-                <input type="text" name="n_certificado" value="<?php echo $row['n_certificado'];?>" readonly><br/>
-                <!input type="text" name="urlImg" value="<?php echo $row['created_at'];?>" readonly>
-                <!input type="text" name="urlImg" value="<?php echo $row['updated_at'];?>" readonly><br/>
-                <button type="submit" class="btn btn-primary my-4">Registrar Visita</button>
-            
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label for="nombre">Nombre: </label>
+                        <?php echo $row['nombre'];?>
+                      </td>
+                      <td>
+                        <label for="apellido">Apellido: </label>
+                        <?php echo $row['apellido'];?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="fecha_nacimiento">Fecha de Nacimiento: </label>
+                        <?php echo $fecha_nacimiento;?>
+                      </td>
+                      <td>
+                        <label for="zona_residencia">Zona de Residencia: </label>
+                        <?php echo $row['zona_residencia'];?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="n_certificado_discapacidad">N° Certificado de Discapacidad: </label>
+                        <?php echo $row['n_certificado'];?>
+                      </td>
+                      <td>
+                        <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
+                        <button type="submit" class="btn btn-primary my-4">Registrar Visita</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </form>
 
             </div>
@@ -171,14 +203,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>

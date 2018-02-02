@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <div class="list-group">
             <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
             <a href="registrar.php" class="list-group-item">Registrar</a>
-            <a href="#" class="list-group-item">Herramientas</a>
+            <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
@@ -76,20 +76,46 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
        	  <div id="busqueda" class="my-5">
             <div class="form-group">
               <form action="../controlador/consulta_general.php" method="post" accept-charset="utf-8">
-                <label for="cedula">Gerencia: </label>
-                <?php
-                  $gerencia = new Select();
-                  $gerencia->Gerencia();
-                ?>
-                <label for="cedula">Tipo de Visita: </label>
-                <?php
-                  $tipo_visita = new Select();
-                  $tipo_visita->TipoVisita();
-                ?>
-                <label for="fecha_inicio">Fecha de Inicio: </label>
-                <input type="text" id="datepicker" name="fecha_inicio" placeholder="Fecha de Inicio" required><br/>
-                <label for="fecha_fin">Fecha Fin: </label>
-                <input type="text" id="datepicker2" name="fecha_fin" placeholder="Fecha Fin" required><br/>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label for="cedula">Gerencia: </label>
+                        <?php
+                          $gerencia = new Select();
+                          $gerencia->Gerencia();
+                        ?>
+                      </td>
+                      <td>
+                        <label for="cedula">Tipo de Visita: </label>
+                        <?php
+                          $tipo_visita = new Select();
+                          $tipo_visita->TipoVisita();
+                        ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Rango de Fechas</label>
+                      </td>
+                    </tr>
+                      <td align="right">
+                        <label for="fecha_inicio">Del: </label>
+                      </td>
+                      <td>
+                        <input type="text" id="datepicker" name="fecha_inicio" placeholder="DD/MM/AA" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right">
+                        <label for="fecha_fin">Al: </label>
+                      </td>
+                      <td>
+                        <input type="text" id="datepicker2" name="fecha_fin" placeholder="DD/MM/AA" required>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <button type="submit" class="btn btn-primary">Consultar</button>
               </form>
             </div>
@@ -104,14 +130,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <!--script src="../../vendor/jquery/jquery.min.js"></script>

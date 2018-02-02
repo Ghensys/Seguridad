@@ -1,7 +1,8 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
 {
+  require_once '../modelo/select.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,49 +78,61 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
        	  <div id="busqueda" class="my-5">
             <div class="table">
-              
-              <table id="myTable">
-                <thead>
-                  <tr>
-                    <th>Cedula</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>N° Certificado Discapacidad</th>
-                    <th>Gerencia</th>
-                    <th>Tipo de Visita</th>
-                    <th>Responsable</th>
-                    <th>Entrada</th>
-                    <th>Salida</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
 
-                  while ($row = pg_fetch_array($consulta))
-                  {
-                  ?>
-                  <tr>
-                    <td><?php echo $row['cedula']; ?></td>
-                    <td><?php echo $row['nombre']; ?></td>
-                    <td><?php echo $row['apellido']; ?></td>
-                    <td><?php echo $row['n_certificado']; ?></td>
-                    <td><?php echo $row['descripcion_gerencia']; ?></td>
-                    <td><?php echo $row['descripcion_tipo_visita']; ?></td>
-                    <td><?php echo $row['responsable']; ?></td>
-                    <td><?php echo $row['created_at']; ?></td>
-                    <td><?php echo $row['updated_at']; ?></td>
-                  </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-              <form action="../vista/pdf/exportar_tgeneral.php" method="post" accept-charset="utf-8" target="_blank">
-                <input type="hidden" name="gerencia" value="<?php echo $gerencia;?>">
-                <input type="hidden" name="tipo_visita" value="<?php echo $tipo_visita;?>">
-                <input type="hidden" name="fecha_inicio" value="<?php echo $fecha_inicio;?>">
-                <input type="hidden" name="fecha_fin" value="<?php echo $fecha_fin;?>">
-                <button type="submit" class="btn btn-primary">Exportar a PDF</button>
+              <form action="actualizar_perfil.php" method="post" accept-charset="utf-8">
+                <input type="hidden" name="id_usuario" value="<?php echo $row['id'];?>">
+                <table class="form-control">
+                  <tbody>
+                    <tr>
+                      <td>
+                        Nombres
+                      </td>
+                      <td>
+                        <input type="text" name="nombre" value="<?php echo $row['nombre']; ?>" placeholder="Nombre" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Apellidos
+                      </td>
+                      <td>
+                        <input type="text" name="apellido" value="<?php echo $row['apellido']; ?>" placeholder="Apellido" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Correo Electrónico
+                      </td>
+                      <td>
+                        <input type="text" name="email" value="<?php echo $row['email']; ?>" placeholder="Correo Electrónico" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Contraseña
+                      </td>
+                      <td>
+                        <input type="password" name="password" value="<?php echo $row['password']; ?>" placeholder="Contraseña" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Perfil
+                      </td>
+                      <td>
+                        <?php 
+                          $perfil = new Select();
+                          $perfil->TipoPerfil();
+                        ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button type="submit" class="btn btn-primary">Actualizar Datos</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </form>
             </div>
        	  </div>

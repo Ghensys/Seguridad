@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
 {
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sistema Seguridad</title>
+    <title>Administración de Perfiles</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,26 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    
+
+    <script language="JavaScript">
+      function Desactivar()
+      {
+          if (confirm('¿Desea Desactivar esta Gerencia?'))
+          {
+             document.Desactivar.submit()
+          }
+      }
+    </script>
+
+    <script language="JavaScript">
+      function Activar()
+      {
+          if (confirm('¿Desea Activar esta Gerencia?'))
+          {
+             document.Activar.submit()
+          }
+      }
+    </script> 
 
   </head>
 
@@ -62,71 +81,64 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
         <div class="col-lg-3">
 
-          <h2 class="my-4">Menú</h2>
+          <h2 class="my-4">Gerencias</h2>
           <div class="list-group">
-            <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-            <a href="registrar.php" class="list-group-item">Registrar</a>
-            <a href="#" class="list-group-item">Herramientas</a>
+            <a href="../vista/herramienta.php" class="list-group-item active">Volver</a>
           </div>
 
         </div>
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-	    <div class="tab-content">
+          <div class="tab-content">
+            <div class="my-5">
+              <div class="table">
+                <table id="myTable">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Nombre de Gerencia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
 
-       	  <div id="busqueda" class="my-5">
-            <div class="table">
-              
-              <table id="myTable">
-                <thead>
-                  <tr>
-                    <th>Cedula</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>N° Certificado Discapacidad</th>
-                    <th>Gerencia</th>
-                    <th>Tipo de Visita</th>
-                    <th>Responsable</th>
-                    <th>Entrada</th>
-                    <th>Salida</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
+                    while ($row = pg_fetch_array($gerencias))
+                    {
+                    ?>
+                    <tr>
+                      <td><a href="../controlador/datos_gerencia.php?id_gerencia=<?php echo $row['id'];?>">Modificar</a></td>
+                      <?php
+                        if ($row['estatus_dato'] == 0)
+                        {
+                      ?>
+                          <td><a onclick="Desactivar()" href="../controlador/desactivar_gerencia.php?id_gerencia=<?php echo $row['id'];?>">Desactivar</a></td>
+                      <?php
+                        }
+                        else
+                        {
+                      ?>
+                          <td><a onclick="Activar()" href="../controlador/activar_gerencia.php?id_gerencia=<?php echo $row['id'];?>">Activar</a></td>
+                      <?php
+                        }
+                      ?>
 
-                  while ($row = pg_fetch_array($consulta))
-                  {
-                  ?>
-                  <tr>
-                    <td><?php echo $row['cedula']; ?></td>
-                    <td><?php echo $row['nombre']; ?></td>
-                    <td><?php echo $row['apellido']; ?></td>
-                    <td><?php echo $row['n_certificado']; ?></td>
-                    <td><?php echo $row['descripcion_gerencia']; ?></td>
-                    <td><?php echo $row['descripcion_tipo_visita']; ?></td>
-                    <td><?php echo $row['responsable']; ?></td>
-                    <td><?php echo $row['created_at']; ?></td>
-                    <td><?php echo $row['updated_at']; ?></td>
-                  </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-              <form action="../vista/pdf/exportar_tgeneral.php" method="post" accept-charset="utf-8" target="_blank">
-                <input type="hidden" name="gerencia" value="<?php echo $gerencia;?>">
-                <input type="hidden" name="tipo_visita" value="<?php echo $tipo_visita;?>">
-                <input type="hidden" name="fecha_inicio" value="<?php echo $fecha_inicio;?>">
-                <input type="hidden" name="fecha_fin" value="<?php echo $fecha_fin;?>">
-                <button type="submit" class="btn btn-primary">Exportar a PDF</button>
-              </form>
+                      <td><?php echo $row['descripcion_gerencia'];?></td>
+                      <td><td><?php echo $row['descripcion_estatus_dato'];?></td></td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+                <a href="../vista/registrar_gerencia.php" class="btn btn-primary">Nueva Gerencia</a>
             </div>
-       	  </div>
+          </div>
+        <!--/.tab-content -->
 
-        </div>
         <!-- /.col-lg-9 -->
-       </div>
+        </div>
 
       </div>
       <!-- /.row -->
@@ -158,5 +170,5 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 }
 else
 {
-	header("Location:../../");
+  header("Location:../../");
 }

@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
+  require_once '../modelo/select.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $cedula;?> - Registrar Visitante</title>
+    <title>Registrar Visita</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -88,11 +89,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
         <div class="col-lg-3">
 
-          <h2 class="my-4">Menú</h2>
+          <h2 class="my-4">Registrar Visita</h2>
           <div class="list-group">
           	<a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-      			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
-      			<a href="#eliminar" class="list-group-item">Herramientas</a>
           </div>
 
         </div>
@@ -103,17 +102,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
             <div class="my-5">
 
-              <h4 class="my-1" ">Registrar Visitante: <?php echo $cedula;?></h4>
+              <h4 class="my-1" ">Registrar el Tipo de Visita</h4>
 
-          		<form action="../controlador/registrar_visitante.php" method="post" accept-charset="utf-8">
-
-                <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
-          			<input type="text" name="nombre" placeholder="Nombre" required>
-          			<input type="text" name="apellido" placeholder="Apellido" required>
-          			<input type="text" id="datepicker" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
-          			<input type="text" name="zona_residencia" placeholder="Zona de Residencia" required>
-          			<input type="text" name="n_certificado" placeholder="N° Certificado">
-                <button type="submit" class="btn btn-primary my-4">Registrar Visitante</button>
+          		<form action="../controlador/registrar_tipo_visita.php" method="post" accept-charset="utf-8">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label>Nombre del Tipo de Visita</label>
+                      </td>
+                      <td>
+                        <input type="text" name="descripcion_tipo_visita" placeholder="Descripción" required>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary my-4">Registrar Tipo de Visita</button>
 
           		</form>
 

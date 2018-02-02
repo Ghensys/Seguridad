@@ -42,7 +42,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salir</a>
+              <a class="nav-link" href="../controlador/cerrar_sesion.php">Salir</a>
             </li>
           </ul>
         </div>
@@ -58,7 +58,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
+            <a href="registrar.php" class="list-group-item">Validar Visitante</a>
             <a href="consulta.php" class="list-group-item">Consultar Registro</a>
             <a href="herramienta.php" class="list-group-item">Herramientas</a>
           </div>
@@ -71,14 +71,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     </div>
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>

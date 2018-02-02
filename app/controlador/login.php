@@ -14,7 +14,7 @@ if ($login)
 	$obj_conex = new conexion();
 	$obj_conex->conectar();
 
-	$sql = "SELECT id, nombre, apellido, email, password, id_perfil, remember_token, created_at, updated_at
+	$sql = "SELECT id, nombre, apellido, email, password, id_perfil, remember_token, created_at, updated_at, estatus_dato
 			FROM public.users WHERE email = '$email';";
 
 	$query = pg_query($sql);
@@ -28,6 +28,8 @@ if ($login)
 	$_SESSION['nombre'] = $row['nombre'];
 	$_SESSION['apellido'] = $row['apellido'];
 	$_SESSION['id_perfil'] = $row['id_perfil'];
+	$_SESSION['estatus_dato'] = $row['estatus_dato'];
+
 	header("Location:../vista/");
 
 }else
