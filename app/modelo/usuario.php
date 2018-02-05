@@ -143,7 +143,7 @@ class Usuario
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "UPDATE public.users SET updated_at=NOW(), estatus_perfil=1
+		$sql = "UPDATE public.users SET updated_at=NOW(), estatus_dato=1
 			 	WHERE id = '$id_usuario';";
 
 		$query = pg_query($sql);
@@ -163,7 +163,7 @@ class Usuario
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "UPDATE public.users SET updated_at=NOW(), estatus_perfil=0
+		$sql = "UPDATE public.users SET updated_at=NOW(), estatus_dato=0
 			 	WHERE id = '$id_usuario';";
 
 		$query = pg_query($sql);

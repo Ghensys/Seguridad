@@ -18,5 +18,8 @@ unset($_SESSION['estatus_dato']);
 session_unset();
 
 //Redireccionamiento
-echo "<script>document.location.href='../../';</script>";
 
+$mensaje = "Acaba de cerrar sesión correctamente.";
+
+echo "<script>alert('$mensaje')</script>";
+echo "<script>window.location.replace('../../');</script>";

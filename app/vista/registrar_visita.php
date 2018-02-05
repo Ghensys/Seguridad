@@ -175,5 +175,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 }
 else
 {
-	header("Location:../../");
+  $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
+  echo "<script>alert('$mensaje')</script>";
+  echo "<script>window.location.replace('../../');</script>";
 }

@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
 
-$cedula = $_POST['cedula'];?>
+  $cedula = $_POST['cedula'];?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,5 +143,8 @@ $cedula = $_POST['cedula'];?>
 }
 else
 {
-	header("Location:../../");
+  $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
+  echo "<script>alert('$mensaje')</script>";
+  echo "<script>window.location.replace('../../');</script>";
 }

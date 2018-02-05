@@ -34,6 +34,8 @@ if ($login)
 
 }else
 {
-	echo "ERROR";
-	//header("Location:../../");
+  $mensaje = "Correo o contraseña invalida, verifique los datos o comuniquese con el administrador del sistema.";
+
+  echo "<script>alert('$mensaje')</script>";
+  echo "<script>window.location.replace('../../');</script>";
 }

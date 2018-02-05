@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']))
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
 ?>
 <!DOCTYPE html>
@@ -86,5 +86,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 }
 else
 {
-  header("Location:../../");
+  $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
+  echo "<script>alert('$mensaje')</script>";
+  echo "<script>window.location.replace('../../');</script>";
 }
