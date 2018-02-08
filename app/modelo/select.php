@@ -62,7 +62,7 @@ class Select
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "SELECT * FROM perfils ORDER BY descripcion_perfil ASC;";
+		$sql = "SELECT * FROM perfils WHERE id != 0 ORDER BY descripcion_perfil ASC;";
 
 		$query = pg_query($sql);
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0 && $_SESSION['id_perfil'] <= 1)
 {
 ?>
 <!DOCTYPE html>
@@ -112,25 +112,51 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                     {
                     ?>
                     <tr>
-                      <td><a href="../controlador/datos_perfil.php?id_usuario=<?php echo $row['id'];?>">Modificar</a></td>
                       <?php
-                        if ($row['estatus_dato'] == 0)
-                        {
+                      if ($row['id_perfil'] <= 1) 
+                      {
                       ?>
-                          <td><a onclick="Desactivar()" href="../controlador/desactivar_perfil.php?id_usuario=<?php echo $row['id'];?>">Desactivar</a></td>
+                        <td></td>
+                        <td></td>
                       <?php
-                        }
-                        else
-                        {
+                      }
+                      else
+                      {
                       ?>
-                          <td><a onclick="Activar()" href="../controlador/activar_perfil.php?id_usuario=<?php echo $row['id'];?>">Activar</a></td>
-                      <?php
-                        }
+                        <td><a href="../controlador/datos_perfil.php?id_usuario=<?php echo $row['id'];?>">Modificar</a></td>
+                        <?php
+                          if ($row['estatus_dato'] == 0)
+                          {
+                        ?>
+                            <td><a onclick="Desactivar()" href="../controlador/desactivar_perfil.php?id_usuario=<?php echo $row['id'];?>">Desactivar</a></td>
+                        <?php
+                          }
+                          else
+                          {
+                        ?>
+                            <td><a onclick="Activar()" href="../controlador/activar_perfil.php?id_usuario=<?php echo $row['id'];?>">Activar</a></td>
+                        <?php
+                          }
+                      }
                       ?>
+                      
 
                       <td><?php echo $row['nombre'];?></td>
                       <td><?php echo $row['apellido'];?></td>
-                      <td><?php echo $row['email'];?></td>
+                      <?php
+                      if ($row['id_perfil'] == 0) 
+                      {
+                        ?>
+                        <td>******@*****</td>
+                      <?php
+                      }
+                      else
+                      {
+                      ?>
+                        <td><?php echo $row['email'];?></td>
+                      <?php
+                      }
+                      ?>
                       <td><?php echo $row['descripcion_perfil'];?></td>
                       <td><?php echo $row['descripcion_estatus_dato'];?></td>
                     </tr>

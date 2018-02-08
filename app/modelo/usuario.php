@@ -72,6 +72,7 @@ class Usuario
 				users.nombre,
 				users.apellido, 
 				users.email,
+				users.id_perfil,
 				users.estatus_dato,
 				estatus_datos.descripcion_estatus_dato,
 				perfils.descripcion_perfil 

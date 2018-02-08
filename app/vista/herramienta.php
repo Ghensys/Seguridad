@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0 && $_SESSION['id_perfil'] <= 1)
 {
 ?>
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
             <a href="../controlador/perfil.php" class="list-group-item">Administrar Perfiles</a>
             <a href="../controlador/gerencia.php" class="list-group-item">Administrar Gerencias</a>
             <a href="../controlador/tipo_visita.php" class="list-group-item">Administrar Tipo de Visitas</a>
-            <a href="reporte.php" class="list-group-item">Reportes</a>
+            <a href="#" class="list-group-item disabled">Reportes</a>
             <a href="index.php" class="list-group-item">Volver</a>
           </div>
 
@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 }
 else
 {
-  $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+  $mensaje = "Por favor, inicie sesión para ingresar al sistema o verifique sus privilegios";
 
   echo "<script>alert('$mensaje')</script>";
   echo "<script>window.location.replace('../../');</script>";
