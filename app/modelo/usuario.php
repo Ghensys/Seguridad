@@ -3,7 +3,7 @@
 require 'conexion.php';
 
 /**
-* Clase para Usuarios
+* Clase para Usuarios/Perfiles
 */
 
 class Usuario

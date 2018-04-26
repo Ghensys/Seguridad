@@ -3,7 +3,7 @@
 require 'conexion.php';
 
 /**
-* Clase para Usuarios
+* Clase para la tabla tipo_visitas (CRUD)
 */
 
 class TipoVisita

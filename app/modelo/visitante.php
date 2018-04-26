@@ -3,7 +3,7 @@
 require 'conexion.php';
 
 /**
-* Clase para Visitantes
+* Clase para los datos de los Visitantes
 */
 class Visitante
 {

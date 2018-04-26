@@ -1,5 +1,8 @@
 <?php 
 
+/**
+*	Clase de Conexion a la Base de Datos 
+*/
 class Conexion{
 	
 	private $host;

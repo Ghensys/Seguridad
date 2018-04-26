@@ -4,7 +4,7 @@ require_once 'conexion.php';
 
 
 /**
-* Datos de los Select
+* Datos de los Select (Listas Desplegables en los Formularios)
 */
 class Select
 {
