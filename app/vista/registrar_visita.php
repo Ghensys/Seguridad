@@ -107,6 +107,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
           	<a href="../controlador/visitante.php?cedula=<?php echo $cedula;?>&token=1" class="list-group-item active">Volver</a>
+            <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
       			<?php
             if ($_SESSION['id_perfil'] <= 1) 
             {

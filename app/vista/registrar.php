@@ -57,6 +57,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
             <a href="registrar.php" class="list-group-item active">Validar Visitante</a>
+            <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
             <?php
             if ($_SESSION['id_perfil'] <= 1) 
             {
