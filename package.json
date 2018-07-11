@@ -1,11 +1,11 @@
 {
-  "title": "Shop Homepage",
-  "name": "startbootstrap-shop-homepage",
-  "version": "4.0.0-beta.2",
-  "description": "A shop homepage HTML template built with Bootstrap",
+  "title": "Sistema de Visitas",
+  "name": "sistema de visitas",
+  "version": "1.0.0",
+  "description": "Sistema de control de visitas en Conapdis",
   "keywords": [
     "css",
-    "sass",
+    "php",
     "html",
     "responsive",
     "theme",

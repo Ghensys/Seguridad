@@ -37,8 +37,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
-        <img src="https://pbs.twimg.com/profile_images/825851268656726018/-a2tx--h_400x400.jpg" alt="">
-        <a class="navbar-brand" href="#"><!img src="../../images/icono.jpg" alt=""> Sistema de Seguridad - Conapdis</a>
+        <a class="navbar-brand" href="#">Sistema de Seguridad - Conapdis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -67,8 +66,21 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
             <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
-            <a href="registrar.php" class="list-group-item">Validar Visitante</a>
-            <a href="herramienta.php" class="list-group-item">Herramientas</a>
+            <?php
+            if ($_SESSION['id_perfil'] <= 1) 
+            {
+            ?>
+              <a href="consulta.php" class="list-group-item">Consultar Registro</a>
+              <a href="herramienta.php" class="list-group-item">Herramientas</a>
+            <?php
+            }
+            elseif ($_SESSION['id_perfil'] == 2)
+            {
+            ?>
+              <a href="consulta.php" class="list-group-item">Consultar Registro</a>
+            <?php
+            }
+            ?>
           </div>
 
         </div>

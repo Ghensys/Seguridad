@@ -13,7 +13,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     $con = new Conexion();
     $con->Conectar();
 
-    $sql = "SELECT id, descripcion_gerencia FROM gerencias;";
+    $sql = "SELECT id, descripcion_gerencia FROM gerencias WHERE estatus_dato = 0;";
 
     $query = pg_query($sql);
 
@@ -31,7 +31,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     $con = new Conexion();
     $con->Conectar();
 
-    $sql = "SELECT id, descripcion_tipo_visita FROM tipo_visitas;";
+    $sql = "SELECT id, descripcion_tipo_visita FROM tipo_visitas WHERE estatus_dato = 0;";
 
     $query = pg_query($sql);
 
@@ -107,8 +107,21 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
           <h2 class="my-4">Menú</h2>
           <div class="list-group">
           	<a href="../controlador/visitante.php?cedula=<?php echo $cedula;?>&token=1" class="list-group-item active">Volver</a>
-      			<a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
-      			<a href="herramienta.php" class="list-group-item">Herramientas</a>
+      			<?php
+            if ($_SESSION['id_perfil'] <= 1) 
+            {
+            ?>
+              <a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
+              <a href="../vista/herramienta.php" class="list-group-item">Herramientas</a>
+            <?php
+            }
+            elseif ($_SESSION['id_perfil'] == 2)
+            {
+            ?>
+              <a href="../vista/consulta.php" class="list-group-item">Consultar Registro</a>
+            <?php
+            }
+            ?>
           </div>
 
         </div>
