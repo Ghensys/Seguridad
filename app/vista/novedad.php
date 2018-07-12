@@ -21,6 +21,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
 
+    
+
   </head>
 
   <body>
@@ -56,7 +58,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item active">Validar Visitante</a>
+            <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
             <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
             <?php
             if ($_SESSION['id_perfil'] <= 1) 
@@ -79,22 +81,28 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-          <div class="tab-content">
-            <div  class="my-5">
+	    <div class="tab-content">
 
-              <div  class="form-control">
-                <h3>Validar Cedula</h3>
-                <p>
-                  <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
-                    <input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
-                    <button type="submit" class="btn btn-primary">Avanzar</button>
-                  </form>
-                </p>
-              </div>
+       	  <div id="busqueda" class="my-5">
+            <div class="form-group">
+
+              <br/>
+              <br/>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><a href="registrar_novedad.php" title="Registrar Novedad" class="btn btn-outline-info">Registrar Novedad</a></td>
+                    <td><a href="consulta_novedad.php" title="Consultar Novedad" class="btn btn-outline-info">Consultar Novedad</a></td>
+                  </tr>
+                </tbody>
+              </table>
+              
             </div>
-          </div>
+       	  </div>
+
         </div>
         <!-- /.col-lg-9 -->
+       </div>
 
       </div>
       <!-- /.row -->
@@ -114,6 +122,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 else
 {
   $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
   echo "<script>alert('$mensaje')</script>";
   echo "<script>window.location.replace('../../');</script>";
 }

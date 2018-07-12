@@ -2,6 +2,10 @@
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
 {
+
+  require_once '../modelo/select.php';
+
+  $tipo_novedad = new Select();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +24,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
+
+    
 
   </head>
 
@@ -56,7 +62,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item active">Validar Visitante</a>
+            <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
             <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
             <?php
             if ($_SESSION['id_perfil'] <= 1) 
@@ -79,22 +85,38 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-          <div class="tab-content">
-            <div  class="my-5">
+    	    <div class="tab-content">
 
-              <div  class="form-control">
-                <h3>Validar Cedula</h3>
-                <p>
-                  <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
-                    <input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
-                    <button type="submit" class="btn btn-primary">Avanzar</button>
-                  </form>
-                </p>
-              </div>
-            </div>
-          </div>
+            <form action="../controlador/registrar_novedad.php" method="post">
+              
+           	  <div id="busqueda" class="my-5">
+
+                <div class="form-group">
+                
+                    <label for="tipo_novedad">Tipo de Novedad</label>
+                    <?php                
+                    $tipo_novedad->TipoNovedad();
+                    ?>
+                </div>
+                
+                <div class="form-group">
+
+                    <label for="descripcion_novedad">Descripción</label>
+                    <textarea name="descripcion_novedad" class="form-control"></textarea>
+
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Registrar Novedad</button>
+                </div>
+
+            </form>
+
+       	  </div>
+
         </div>
         <!-- /.col-lg-9 -->
+       </div>
 
       </div>
       <!-- /.row -->
@@ -114,6 +136,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 else
 {
   $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
   echo "<script>alert('$mensaje')</script>";
   echo "<script>window.location.replace('../../');</script>";
 }

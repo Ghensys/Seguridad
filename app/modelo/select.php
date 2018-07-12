@@ -77,4 +77,24 @@ class Select
 		echo "</select>";
 	}
 
+	public function TipoNovedad()
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql = "SELECT * FROM tipo_novedad ORDER BY descripcion_tipo_novedad ASC;";
+
+		$query = pg_query($sql);
+
+		echo "<select name='tipo_novedad' class='form-control' required>;";
+		echo "<option value='' selected>Seleccionar</option>";
+
+		while ($row = pg_fetch_row($query))
+		{
+			echo "<option value=".$row[0].">".$row[1]."</option>";
+		}
+
+		echo "</select>";
+	}
+
 }

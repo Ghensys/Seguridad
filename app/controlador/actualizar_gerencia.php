@@ -19,5 +19,5 @@ if ($actualizar)
 else
 {
 	echo "<script>alert('$error')</script>";
-	echo "<script>window.location.replace('../controlador/gerencia.php');</script>"; 
+	echo "<script>window.location.replace('../controlador/gerencia.php');</script>";
 }

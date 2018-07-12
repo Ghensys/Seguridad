@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0)
+if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apellido']) && isset($_SESSION['id_perfil']) && $_SESSION['estatus_dato'] == 0 && $_SESSION['id_perfil'] != 3)
 {
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
     <!-- Custom styles for this template -->
     <link href="../../css/shop-homepage.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="../../vendor/jquery/jquery.1.12.js"></script>
+    <script src="../../vendor/jquery/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../css/datatable.min.css">
+
+    
 
   </head>
 
@@ -54,9 +63,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
         <div class="col-lg-3">
 
-          <h2 class="my-4">Menú Principal</h2>
+          <h2 class="my-4">Menú</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item active">Validar Visitante</a>
+            <a href="#" onclick="javascript:history.go(-1)" class="list-group-item active">Volver</a>
             <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
             <?php
             if ($_SESSION['id_perfil'] <= 1) 
@@ -79,22 +88,37 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
         <!-- /.col-lg-3 -->
         <div class="col-lg-9">
 
-          <div class="tab-content">
-            <div  class="my-5">
+	    <div class="tab-content">
 
-              <div  class="form-control">
-                <h3>Validar Cedula</h3>
-                <p>
-                  <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
-                    <input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
-                    <button type="submit" class="btn btn-primary">Avanzar</button>
-                  </form>
-                </p>
-              </div>
-            </div>
+       	  <div id="busqueda" class="my-5">
+
+            <form action="../controlador/consultar_novedad.php" method="post">
+              
+                <div class="form-group">
+                
+                    <label for="tipo_novedad">Ingresar el dia a consultar</label>
+                </div>
+                
+                <div class="form-group">
+
+                    <input type="text" id="datepicker" name="fecha_inicio" placeholder="DD/MM/AA" required>
+
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                </div>
+
+            </form>
+
+
+            </form>
+
           </div>
+
         </div>
         <!-- /.col-lg-9 -->
+       </div>
 
       </div>
       <!-- /.row -->
@@ -103,8 +127,43 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <!-- /.container -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script-->
+
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+    </script>
+
+    <script>
+       $.datepicker.regional['es'] = {
+       closeText: 'Cerrar',
+       prevText: '< Ant',
+       nextText: 'Sig >',
+       currentText: 'Hoy',
+       monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+       monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+       dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+       dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+       dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+       weekHeader: 'Sm',
+       dateFormat: 'dd/mm/yy',
+       firstDay: 1,
+       isRTL: false,
+       showMonthAfterYear: false,
+       yearSuffix: ''
+       };
+       $.datepicker.setDefaults($.datepicker.regional['es']);
+      $(function () {
+      $("#datepicker").datepicker();
+      });
+      $(function () {
+      $("#datepicker2").datepicker();
+      });
+
+    </script>
+
 
   </body>
 
@@ -114,6 +173,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 else
 {
   $mensaje = "Por favor, inicie sesión para ingresar al sistema";
+
   echo "<script>alert('$mensaje')</script>";
   echo "<script>window.location.replace('../../');</script>";
 }
