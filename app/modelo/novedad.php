@@ -36,4 +36,30 @@ class Novedad
 			return false;
 		}
 	}
+
+	public function consultarNovedad($fecha_consulta)
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql = "SELECT 
+				novedad.id_novedad,
+				novedad.descripcion_novedad,
+				novedad.fecha_novedad,
+				tipo_novedad.descripcion_tipo_novedad
+				FROM novedad, tipo_novedad
+				WHERE novedad.fecha_novedad BETWEEN '$fecha_consulta 00:00:00' AND '$fecha_consulta 23:59:59';
+";
+
+		$query = pg_query($sql);
+
+		if ($query)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
