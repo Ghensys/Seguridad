@@ -46,7 +46,7 @@ class Novedad
 
 		
 
-		/*$sql = sprintf("INSERT INTO public.novedad(id_tipo_novedad, descripcion_novedad, estatus_novedad)
+		$sql = sprintf("INSERT INTO public.novedad(id_tipo_novedad, descripcion_novedad, estatus_novedad)
 				VALUES ('%s', '%s','%s')",
 				$data['tipo_novedad'],
 			    $data['descripcion_novedad'],
@@ -61,9 +61,7 @@ class Novedad
 		else
 		{
 			return false;
-		}*/
-
-		print_r($data);
+		}
 	}
 
 	public function consultarNovedad($fecha_consulta)
@@ -96,7 +94,7 @@ class Novedad
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "";
+		$sql = "SELECT * FROM novedad JOIN tipo_novedad ON tipo_novedad.id_tipo_novedad = novedad.id_tipo_novedad WHERE novedad.estatus_novedad = 1 ORDER BY novedad.fecha_novedad DESC;";
 
 		$query = pg_query($sql);
 

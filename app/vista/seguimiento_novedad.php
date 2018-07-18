@@ -6,7 +6,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
   require_once '../modelo/novedad.php';
 
   $seguimiento = new Novedad();
-  $data = seguimiento->seguimientoNovedad();
+  $data = $seguimiento->seguimientoNovedad();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,15 +93,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
         <div class="col-lg-9">
 
 	    <div class="tab-content">
-
        	  <div id="busqueda" class="my-5">
             <div class="table">
               
               <table id="myTable">
                 <thead>
                   <tr>
+                    <th>Tipo</th>
                     <th>Novedad</th>
-                    <th>Seguimiento</th>
+                    <th>Fecha Novedad</th>
                   </tr>
                 </thead>
                 <tbody>
