@@ -58,8 +58,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
 
           <h2 class="my-4">Menú Principal</h2>
           <div class="list-group">
-            <a href="registrar.php" class="list-group-item">Registrar Visitante</a>
-            <a href="../vista/novedad.php" class="list-group-item">Novedades</a>
+            <a href="registrar.php" class="list-group-item">Validar Visitante</a>
+            <a href="../vista/novedad.php" class="list-group-item active">Novedades</a>
             <?php
             if ($_SESSION['id_perfil'] <= 1) 
             {
@@ -99,14 +99,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                       <a href="consulta_novedad.php" title="Consultar Novedad" class="btn btn-outline-info">Consultar Novedad</a>
                     </td>
                   </tr>
-                  <tr>
+                  <!--tr>
                     <td>
                       <a href="seguimiento_novedad.php" title="Seguimiento de Novedad" class="btn btn-outline-info">Seguimiento</a>
                     </td>
                     <td>
                       
                     </td>
-                  </tr>
+                  </tr-->
                 </tbody>
               </table>
             

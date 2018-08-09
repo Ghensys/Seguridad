@@ -113,16 +113,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                     ?>
                     <tr>
                       <?php
-                      if ($row['id_perfil'] <= 1) 
+
+                      if ($_SESSION['id_perfil'] == 0) 
                       {
-                      ?>
-                        <td></td>
-                        <td></td>
-                      <?php
-                      }
-                      else
-                      {
-                      ?>
+                        ?>
                         <td><a href="../controlador/datos_perfil.php?id_usuario=<?php echo $row['id'];?>">Modificar</a></td>
                         <?php
                           if ($row['estatus_dato'] == 0)
@@ -137,6 +131,34 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                             <td><a onclick="Activar()" href="../controlador/activar_perfil.php?id_usuario=<?php echo $row['id'];?>">Activar</a></td>
                         <?php
                           }
+
+                      }else
+                      {
+                        if ($row['id_perfil'] <= 1) 
+                        {
+                        ?>
+                          <td></td>
+                          <td></td>
+                        <?php
+                        }
+                        else
+                        {
+                        ?>
+                          <td><a href="../controlador/datos_perfil.php?id_usuario=<?php echo $row['id'];?>">Modificar</a></td>
+                          <?php
+                            if ($row['estatus_dato'] == 0)
+                            {
+                          ?>
+                              <td><a onclick="Desactivar()" href="../controlador/desactivar_perfil.php?id_usuario=<?php echo $row['id'];?>">Desactivar</a></td>
+                          <?php
+                            }
+                            else
+                            {
+                          ?>
+                              <td><a onclick="Activar()" href="../controlador/activar_perfil.php?id_usuario=<?php echo $row['id'];?>">Activar</a></td>
+                          <?php
+                            }
+                        }
                       }
                       ?>
                       

@@ -75,7 +75,9 @@ class Novedad
 				novedad.fecha_novedad,
 				tipo_novedad.descripcion_tipo_novedad
 				FROM novedad, tipo_novedad
-				WHERE novedad.fecha_novedad BETWEEN '$fecha_consulta 00:00:00' AND '$fecha_consulta 23:59:59';";
+				WHERE novedad.id_tipo_novedad = tipo_novedad.id_tipo_novedad 
+				AND
+				novedad.fecha_novedad BETWEEN '$fecha_consulta 00:00:00' AND '$fecha_consulta 23:59:59';";
 
 		$query = pg_query($sql);
 
@@ -107,4 +109,5 @@ class Novedad
 			return false;
 		}
 	}
+
 }

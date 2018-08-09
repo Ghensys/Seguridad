@@ -110,10 +110,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                   while ($row = pg_fetch_assoc($data))
                   {
                   ?>
+                  <!tr onclick="document.location='../controlador/historial_novedad.php'">
                   <tr>
-                    <td><?php echo $row['descripcion_tipo_novedad'];?></td>
-                    <td><?php echo $row['descripcion_novedad']; ?></td>
-                    <td><?php echo $row['fecha_novedad']; ?></td>
+                    <td ><?php echo $row['descripcion_tipo_novedad'];?></td>
+                    <td ><?php echo $row['descripcion_novedad']; ?></td>
+                    <td ><?php echo $row['fecha_novedad']; ?></td>
                   </tr>
                   <?php
                   }
