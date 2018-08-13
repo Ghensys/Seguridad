@@ -18,7 +18,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     $query = pg_query($sql);
 
     echo "<select name='gerencia' class='form-control' required>";
-    echo "<option value='' disabled selected></option>";
+    echo "<option value='' disabled selected>Seleccionar</option>";
     while ($gerencia = pg_fetch_row($query))
     {
       echo "<option value='".$gerencia[0]."'>".$gerencia[1]."</option>";
@@ -36,7 +36,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     $query = pg_query($sql);
 
     echo "<select name='tipo_visita' class='form-control' required>";
-    echo "<option value='' disabled selected></option>";
+    echo "<option value='' disabled selected>Seleccionar</option>";
     while ($tipo_visita = pg_fetch_row($query))
     {
       echo "<option value='".$tipo_visita[0]."'>".$tipo_visita[1]."</option>";
@@ -148,12 +148,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                   TipoVisita();
                 ?>
                 <label for="responsable">Responsable:</label> 
-                Responsable: <input type="text" class="form-control" name="responsable" placeholder="Responsable" required><br/>
+                <input type="text" class="form-control" name="responsable" placeholder="Ingrese el nombre del responsable de la visita" required><br/>
                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['id'];?>">
                 <label for="observacion">Observación</label>
                 <textarea class="form-control" rows="5" name="observacion"></textarea><br/>
                 <label for="n_pase">Número de Pase</label>
-                <input type="number" class="form-control" name="n_pase" placeholder="N° Pase"><br/>
+                <input  class="form-control" type="text" name="n_pase" placeholder="Ejemplo. 01,02,03...10,11,12." maxlength="3" pattern="[0-9]{2}"><br/>
                 
                 <button type="submit" class="btn btn-primary my-4">Registrar Entrada</button>
             

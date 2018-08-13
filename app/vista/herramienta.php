@@ -61,6 +61,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
             <a href="../controlador/perfil.php" class="list-group-item">Administrar Perfiles</a>
             <a href="../controlador/gerencia.php" class="list-group-item">Administrar Gerencias</a>
             <a href="../controlador/tipo_visita.php" class="list-group-item">Administrar Tipo de Visitas</a>
+            <a href="../controlador/novedad.php" class="list-group-item">Novedades</a>
             <a href="#" class="list-group-item disabled">Reportes</a>
             <a href="index.php" class="list-group-item">Volver</a>
           </div>

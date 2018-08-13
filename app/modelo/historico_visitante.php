@@ -30,23 +30,55 @@ class HistoricoVisitante
 	}
 
 	//Registro de las Visitas (Entrada del Visitante)
+
+	public function validarPase($n_pase)
+	{
+		$con = new Conexion();
+		$con->Conectar();
+
+		$sql_validate = "SELECT n_pase, estatus FROM historico_visitantes WHERE n_pase = '$n_pase' AND estatus = 1;";
+
+		$query_validate = pg_query($sql_validate);
+
+		if (pg_num_rows($query_validate)>0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
 	public function RegistrarVisita($cedula,$gerencia,$tipo_visita,$responsable,$usuario,$observacion,$n_pase)
 	{
 		$con = new Conexion();
 		$con->Conectar();
 
-		$sql = "INSERT INTO public.historico_visitantes(cedula, id_gerencia, id_tipo_visita, responsable, id_usuario, observacion, n_pase, created_at, updated_at) VALUES ('$cedula','$gerencia','$tipo_visita','$responsable','$usuario','$observacion','$n_pase', NOW(), NOW()) ;";
+		$sql_validate = "SELECT n_pase, estatus FROM historico_visitantes WHERE n_pase = '$n_pase' AND estatus = 1;";
 
-		$query = pg_query($sql);
+		$query_validate = pg_query($sql_validate);
 
-		if ($query)
-		{
-			return true;
-		}
-		else
+		if (pg_num_rows($query_validate)>0)
 		{
 			return false;
 		}
+		else
+		{
+			$sql = "INSERT INTO public.historico_visitantes(cedula, id_gerencia, id_tipo_visita, responsable, id_usuario, observacion, n_pase, created_at, updated_at) VALUES ('$cedula','$gerencia','$tipo_visita','$responsable','$usuario','$observacion','$n_pase', NOW(), NOW()) ;";
+
+			$query = pg_query($sql);
+
+			if ($query)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 	}
 
 	//Marcar la Salida del Visitante

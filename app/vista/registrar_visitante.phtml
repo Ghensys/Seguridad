@@ -27,36 +27,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
     <script src="../../vendor/jquery/jquery-ui.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../../css/datatable.min.css">
-    <script>
-    $( function() {
-      $( "#datepicker" ).datepicker();
-    } );
-    </script>
-
-    <script>
-       $.datepicker.regional['es'] = {
-       closeText: 'Cerrar',
-       prevText: '< Ant',
-       nextText: 'Sig >',
-       currentText: 'Hoy',
-       monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-       monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-       dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-       dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-       dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-       weekHeader: 'Sm',
-       dateFormat: 'dd/mm/yy',
-       firstDay: 1,
-       isRTL: false,
-       showMonthAfterYear: false,
-       yearSuffix: ''
-       };
-       $.datepicker.setDefaults($.datepicker.regional['es']);
-      $(function () {
-      $("#fecha").datepicker();
-      });
-    </script>
-
   </head>
 
   <body>
@@ -126,7 +96,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                 <input type="hidden" name="cedula" value="<?php echo $cedula;?>">
           			<input type="text" name="nombre" placeholder="Nombre" required>
           			<input type="text" name="apellido" placeholder="Apellido" required>
-          			<input type="text" id="datepicker" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
           			<input type="text" name="zona_residencia" placeholder="Zona de Residencia" required>
           			<input type="text" name="n_certificado" placeholder="N° Certificado">
                 <button type="submit" class="btn btn-primary my-4">Registrar Visitante</button>

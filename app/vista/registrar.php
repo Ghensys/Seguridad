@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['apel
                 <h3>Validar Cedula</h3>
                 <p>
                   <form action="../controlador/visitante.php" method="post" accept-charset="utf-8">
-                    <input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required focus>
+                    <input type="number" name="cedula" size="20" placeholder="Cedula del Visitante" required autofocus>
                     <button type="submit" class="btn btn-primary">Avanzar</button>
                   </form>
                 </p>
