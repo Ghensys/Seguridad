@@ -1,10 +1,10 @@
-<?php
+<?php 
 
 /**
-*	Clase de Conexion a la Base de Datos
+*	Clase de Conexion a la Base de Datos 
 */
 class Conexion{
-
+	
 	private $host;
 	private $puerto;
 	private $usuario;
@@ -17,9 +17,9 @@ class Conexion{
 	{
 		$this->host = "localhost";
 		$this->puerto = "5432";
-		$this->usuario = "grv_bancoex";
-		$this->password = "bancoex2018.";
-		$this->db = "ss";
+		$this->usuario = "postgres";
+		$this->password = "conapdis";
+		$this->db = "SistemaSeguridad5.4";
 	}
 	//metodo para conectar
 	public function Conectar()
@@ -37,5 +37,6 @@ class Conexion{
 
 
 	}
-
+	
 }
+
